@@ -13,20 +13,15 @@ import com.vaadin.server.VaadinRequest;
 import com.vaadin.ui.Button;
 import com.vaadin.ui.Button.ClickEvent;
 import com.vaadin.ui.Button.ClickListener;
-import com.vaadin.ui.Calendar;
 import com.vaadin.ui.ComboBox;
-import com.vaadin.ui.DateField;
 import com.vaadin.ui.FormLayout;
 import com.vaadin.ui.HorizontalLayout;
 import com.vaadin.ui.Label;
-import com.vaadin.ui.PopupDateField;
 import com.vaadin.ui.Table;
 import com.vaadin.ui.UI;
 import com.vaadin.ui.VerticalLayout;
 import com.vaadin.ui.Window;
-import java.util.Date;
-import java.util.GregorianCalendar;
-import java.util.Locale;
+import java.util.UUID;
 
 @Title("Filmy")
 public class VaadinApp extends UI {
@@ -155,7 +150,7 @@ public class VaadinApp extends UI {
 
     @Override
     protected void init(VaadinRequest request) {
-
+        
         Button addMovieFormBtn = new Button("Add");
         Button deleteMovieFormBtn = new Button("Delete");
         Button editMovieFormBtn = new Button("Edit");
@@ -201,6 +196,9 @@ public class VaadinApp extends UI {
         hl.addComponent(addMovieFormBtn);
         hl.addComponent(editMovieFormBtn);
         hl.addComponent(deleteMovieFormBtn);
+        
+        movie.setId(UUID.randomUUID());
+        movies.addItem((Movie)movie);
 
         final Table moviesTable = new Table("Movies", movies);
         moviesTable.setColumnHeader("name", "Nazwa filmu");
